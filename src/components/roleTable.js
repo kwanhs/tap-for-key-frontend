@@ -121,7 +121,7 @@ class RoleTable extends React.Component {
         filterDropdown: ({ setSelectedkeyGroups, selectedkeyGroups, confirm, clearFilters }) => {
             return (
                 <div style={{ padding: 8 }}>
-                    {this.renderFilterDropdownInput(dataIndex)}
+                    {this.renderFilterDropdownInput(dataIndex, confirm)}
                     <Row type='flex' justify='space-between'>
                         <a onClick={() => this.handleSearch(confirm)}> Search </a>
                         <a onClick={() => this.handleReset(dataIndex, clearFilters)}> Reset </a>
@@ -133,9 +133,9 @@ class RoleTable extends React.Component {
         onFilterDropdownVisibleChange: (visible) => {
             if (visible
                 && (
-                    dataIndex === 'username' ||
-                    dataIndex === 'displayName' ||
-                    dataIndex === 'role' 
+                    dataIndex === 'description' ||
+                    dataIndex === 'abbreviation' ||
+                    dataIndex === 'keyGroup'
                 )
             ) {
                 setTimeout(() => this.searchInput.select())
@@ -312,7 +312,7 @@ class RoleTable extends React.Component {
         }
     }
 
-    renderFilterDropdownInput(dataIndex) {
+    renderFilterDropdownInput(dataIndex, confirm) {
         switch (dataIndex) {
             case 'description':
             case 'abbreviation':
@@ -328,6 +328,7 @@ class RoleTable extends React.Component {
                                 filterValues
                             })
                         }}
+                        onPressEnter={() => this.handleSearch(confirm)}
                         style={{ width: 100, marginBottom: 8, display: 'block' }}
                     />
                 )

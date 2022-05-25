@@ -119,7 +119,7 @@ class UserTable extends React.Component {
         filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => {
             return (
                 <div style={{ padding: 8 }}>
-                    {this.renderFilterDropdownInput(dataIndex)}
+                    {this.renderFilterDropdownInput(dataIndex, confirm)}
                     <Row type='flex' justify='space-between'>
                         <a onClick={() => this.handleSearch(confirm)}> Search </a>
                         <a onClick={() => this.handleReset(dataIndex, clearFilters)}> Reset </a>
@@ -279,7 +279,7 @@ class UserTable extends React.Component {
         }
     }
 
-    renderFilterDropdownInput(dataIndex) {
+    renderFilterDropdownInput(dataIndex, confirm) {
         switch (dataIndex) {
             case 'username':
             case 'displayName':
@@ -295,6 +295,7 @@ class UserTable extends React.Component {
                                 filterValues
                             })
                         }}
+                        onPressEnter={() => this.handleSearch(confirm)}
                         style={{ width: 100, marginBottom: 8, display: 'block' }}
                     />
                 )
